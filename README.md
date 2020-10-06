@@ -22,11 +22,11 @@ In the project directory, you can run:
 
 Runs the proxy server to forward requests to the main API.  
 
-/gateway/list/courses/2020 -> https://api.uat.mq.edu.au/ws/rest/cms/listcourses/2020
-/gateway/list/units/2020 -> https://api.uat.mq.edu.au/ws/rest/cms/listunits/2020
-/gateway/get/course/12356 -> https://api.uat.mq.edu.au/ws/rest/cms/cms_course/12356
-/gateway/get/unit/12356 -> https://api.uat.mq.edu.au/ws/rest/cms/cms_unit/12356
-etc
+* /gateway/list/courses/2020 -> https://api.uat.mq.edu.au/ws/rest/cms/listcourses/2020
+* /gateway/list/units/2020 -> https://api.uat.mq.edu.au/ws/rest/cms/listunits/2020
+* /gateway/get/course/12356 -> https://api.uat.mq.edu.au/ws/rest/cms/cms_course/12356
+* /gateway/get/unit/12356 -> https://api.uat.mq.edu.au/ws/rest/cms/cms_unit/12356
+* etc
 
 Where 12356 is the cl_id property of the target object
 
