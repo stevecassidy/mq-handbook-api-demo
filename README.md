@@ -3,11 +3,11 @@
 This project is a front-end for the data supplied by the Macquarie Curriculum Management
 System. 
 
-Plan: 
- * connect to the API, download data
- * store in local PouchDB database in local storage for offline access
- * provide views on the data similar to the official handbook
+Provides a server that can proxy the main API.  This allows us to use the access credentials on
+the server and proxy the requests to an open API.  Use cachios to cache requests to the main API. 
 
+Provides a simple React application that displays a list of courses and some details from 
+individual courses. 
 
 
 ## Development Info
