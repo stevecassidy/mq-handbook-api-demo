@@ -1,10 +1,11 @@
 const express = require('express')  
-
 const gatwayRouter = express.Router()
 
 // Use cachios as a wrapper around axios that caches requests to reduce traffic on the downstream
 // API server
-const cachios = require('cachios')
+const cachios = require('cachios') 
+const { response } = require('express')
+cachios.cache =  require('./dcache.js')
 
 const MQCMS_BASEURL = process.env.MQCMS_BASEURL
 const MQCMS_USERNAME = process.env.MQCMS_USERNAME
@@ -36,6 +37,9 @@ const listAPI = (what, year) => {
 
     return cachios.get(url, {headers})
                     .then(data => data.data)
+                    .catch(error => {
+                        response.status(500).json({error: error})
+                    })
 }
 
 gatwayRouter.get('/gateway/list/:what/:year', async (request, response) => {
@@ -77,6 +81,9 @@ const getAPI = (what, id) => {
 
     return cachios.get(url, {headers})
                 .then(data => data.data)
+                .catch(error => {
+                    response.status(500).json({error: error})
+                })
 }
 
 gatwayRouter.get('/gateway/get/:what/:id', async (request, response) => {
@@ -88,8 +95,12 @@ gatwayRouter.get('/gateway/get/:what/:id', async (request, response) => {
                           'pg_specialisation', 'ug_specialisation', 'unit']
 
     if (validOptions.includes(what)) {
+        try {
         const result = await getAPI(what, id)
         response.json(result)
+        } catch {
+            response.status(404).json({error: 'unknown resource'})
+        }
     } else {
         response.status(404).json({error: 'unknown resource'})
     }
